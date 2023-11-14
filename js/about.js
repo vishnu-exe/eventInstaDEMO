@@ -15,6 +15,11 @@ async function populatePage() {
 		const aboutUsHeader = document.getElementById("aboutUsHeader");
 		aboutUsHeader.textContent = HomePagedata.aboutUsHeader;
 	}
+
+	if (HomePagedata && HomePagedata.aboutUsFooter) {
+		const aboutUsFooter = document.getElementById("aboutUsFooter");
+		aboutUsFooter.textContent = HomePagedata.aboutUsFooter;
+	}
 	const aboutUsImage = document.getElementById("aboutUsImage");
 	const aboutUsPageImageUrl = HomePagedata.aboutUsPageimageurl;
 

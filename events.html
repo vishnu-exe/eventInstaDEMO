@@ -6,7 +6,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>Admin Activities</title>
+		<title>Events</title>
 		<meta
 			content="width=device-width, initial-scale=1.0"
 			name="viewport" />
@@ -59,45 +59,160 @@
 		<link
 			href="css/style.css"
 			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 		<style>
-			.section-heading {
-				color: white;
+			#event-container {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
 			}
 
-			label {
-				color: black;
-				font-weight: 500;
+			.property-card {
+				width: calc(33.33% - 20px);
+				margin: 10px;
+				box-sizing: border-box;
+				position: relative;
 			}
 
-			#contact-form {
+			#property-card-1,
+			#property-card-2,
+			#property-card-3 {
+				position: relative;
 				width: 100%;
-				max-width: 500px;
+				height: 300px;
+				overflow: hidden;
+			}
+
+			.property-card img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			/* .carousel {
+				width: 100%;
+				display: flex;
+			} */
+			.carousel img {
+				width: 100%;
+				height: 200px; /* Adjust the height as needed */
+				object-fit: cover;
+			}
+			.property-details {
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				color: #fff;
+			}
+
+			.modal {
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+			}
+			.carousel-item {
+				height: 300px;
+				background-color: #f5f5f5;
+				color: #fff; /* Adjust the text color for better contrast with the background image */
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 24px;
+				font-family: "Lobster", cursive; /* Stylish font, you can change it */
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for a stylish effect */
+			}
+			.search-bar {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 40px 0;
+			}
+			.stamp {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				color: #fff; /* White text color */
+				background-color: #ff336654; /* Stylish background color, adjust as needed */
+				padding: 8px 12px; /* Increased padding for better visibility */
+				text-transform: uppercase;
+				font-size: 16px; /* Slightly larger font size */
+				font-family: "Playfair Display", serif; /* Stylish font, you can change it */
+			}
+			#applicationForm {
+				max-width: 400px; /* Adjust the maximum width as needed */
 				margin: auto;
-				padding: 10px;
-				border: 1px solid #ccc;
-				border-radius: 5px;
-				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 			}
 
-			.form-control {
-				border: 1px solid #ccc;
-				border-radius: 10px;
-				padding: 10px;
+			/* Additional styles for form elements if necessary */
+			.input-field {
 				width: 100%;
+				padding: 10px;
+				margin-bottom: 5px;
+				box-sizing: border-box;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				background-color: #fff; /* Set a white background */
 			}
 
-			.form-group {
-				width: 100%;
-				padding: 0 10px;
+			#successMessage {
+				margin-top: 12px;
+				color: green;
 			}
 
-			@media (max-width: 600px) {
-				#contact-form {
-					padding: 5px;
+			.featured-events-heading {
+				font-size: 24px;
+				color: #333; /* Dark gray text color */
+				margin-bottom: 20px;
+				font-weight: bold;
+				text-align: center;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				display: inline-block; /* Ensure the underline doesn't extend beyond the text */
+				position: relative; /* Create a positioning context for pseudo-element */
+			}
+
+			.featured-events-heading::after {
+				content: "";
+				display: block;
+				width: 100%; /* Extend the underline to 100% of the width of the container */
+				height: 2px;
+				background-color: #ff3366; /* Underline color */
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			h1 {
+				font-size: 36px; /* Adjust the font size as needed */
+				color: #333; /* Dark gray text color */
+				text-align: center;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				margin-bottom: 20px;
+				font-family: "Playfair Display", serif; /* Stylish font, you can change it */
+			}
+
+			/* Underline effect */
+			h1::after {
+				content: "";
+				display: block;
+				width: 50px; /* Adjust the width of the underline */
+				height: 2px; /* Adjust the thickness of the underline */
+				background-color: #ff3366; /* Stylish underline color, adjust as needed */
+				margin: 10px auto 0;
+			}
+
+			@media (max-width: 768px) {
+				.property-card {
+					width: calc(50% - 20px);
 				}
+			}
 
-				.form-control {
-					padding: 5px;
+			@media (max-width: 576px) {
+				.property-card {
+					width: calc(100% - 20px);
 				}
 			}
 		</style>
@@ -149,7 +264,8 @@
 					class="navbar-brand p-0">
 					<img
 						id="logoimage"
-						alt="logo" />
+						alt="logo"
+						style="padding: 5px; margin: auto; height: 90px" />
 					<!-- <h1 class="m-0">TOT FD</h1> -->
 				</a>
 				<button
@@ -172,6 +288,12 @@
 							href="./about.html"
 							class="nav-item nav-link"
 							>About</a
+						>
+						<a
+							href="./events.html"
+							class="nav-item nav-link active"
+							id="events"
+							>Events</a
 						>
 						<a
 							href="./service.html"
@@ -251,14 +373,15 @@
 						</div>
 						<a
 							href="./login.html"
-							class="nav-item nav-link"
 							id="login"
+							class="nav-item nav-link"
+							style="display: none"
 							>Login</a
 						>
 						<div class="nav-item dropdown">
 							<a
 								href="#"
-								class="nav-link dropdown-toggle active"
+								class="nav-link dropdown-toggle"
 								data-bs-toggle="dropdown"
 								id="adminActivites"
 								style="display: none"
@@ -376,19 +499,17 @@
 				style="margin-bottom: 90px">
 				<div class="row py-5">
 					<div class="col-12 pt-lg-5 mt-lg-5 text-center">
-						<h1 class="display-4 text-white animated zoomIn">
-							Upload Contact Info
-						</h1>
+						<h1 class="display-4 text-white animated zoomIn">Our Events</h1>
 						<a
 							href="#"
 							class="h5 text-white"
-							>Admin Activity</a
+							>Home</a
 						>
 						<i class="far fa-circle text-white px-2"></i>
 						<a
 							href="#"
 							class="h5 text-white"
-							>Upload Contact Info</a
+							>Discover some of the most exquisite events in fashion</a
 						>
 					</div>
 				</div>
@@ -396,42 +517,6 @@
 		</div>
 		<!-- Navbar End -->
 
-		<!-- Full Screen Search Start -->
-		<div
-			class="modal fade"
-			id="searchModal"
-			tabindex="-1">
-			<div class="modal-dialog modal-fullscreen">
-				<div
-					class="modal-content"
-					style="background: rgba(9, 30, 62, 0.7)">
-					<div class="modal-header border-0">
-						<button
-							type="button"
-							class="btn bg-white btn-close"
-							data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div
-						class="modal-body d-flex align-items-center justify-content-center">
-						<div
-							class="input-group"
-							style="max-width: 600px">
-							<input
-								type="text"
-								class="form-control bg-transparent border-primary p-3"
-								placeholder="Type search keyword" />
-							<button class="btn btn-primary px-4">
-								<i class="bi bi-search"></i>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Full Screen Search End -->
-
-		<!-- logout -->
 		<div
 			class="modal fade"
 			id="logoutConfirmationModal"
@@ -474,112 +559,165 @@
 			</div>
 		</div>
 
-		<p
-			class="h1"
-			style="text-align: center"
-			id="message"></p>
-		<!-- Message of success -->
-		<div>
-			<form
-				id="contact-form"
-				style="margin-top: 40px">
-				<div class="form-group mt-lg-3">
-					<label for="mobile">Mobile Number</label>
-					<input
-						type="text"
-						id="mobile"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="mobile-error"
-						style="display: none"
-						>Please enter mobile number</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="email">Email ID</label>
-					<input
-						type="email"
-						id="email"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="email-error"
-						style="display: none"
-						>Please enter a valid email</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="map-location">Address (Location)</label>
-					<input
-						type="text"
-						id="location"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="location-error2"
-						style="display: none"
-						>Please enter valid Address</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="map-location">Map Location (URL)</label>
-					<input
-						type="text"
-						id="map-location"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="location-error"
-						style="display: none"
-						>Please enter map location URL</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="facebook-link">Facebook Link (Optional)</label>
-					<input
-						type="text"
-						id="facebook-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="instagram-link">Instagram Link (Optional)</label>
-					<input
-						type="text"
-						id="instagram-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="youtube-link">Youtube Link (Optional)</label>
-					<input
-						type="text"
-						id="youtube-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="twitter-link">Twitter Link (Optional)</label>
-					<input
-						type="text"
-						id="twitter-link"
-						class="form-control" />
-				</div>
-
-				<div id="message"></div>
+		<!-- Full Screen Search Start -->
+		<div
+			class="modal fade"
+			id="searchModal"
+			tabindex="-1">
+			<div class="modal-dialog modal-fullscreen">
 				<div
-					class="form-group mt-3"
-					style="text-align: center">
-					<input
-						id="submit-button"
-						type="submit"
-						value="Submit"
-						class="btn btn-primary" />
+					class="modal-content"
+					style="background: rgba(9, 30, 62, 0.7)">
+					<div class="modal-header border-0">
+						<button
+							type="button"
+							class="btn bg-white btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div
+						class="modal-body d-flex align-items-center justify-content-center">
+						<div
+							class="input-group"
+							style="max-width: 600px">
+							<input
+								type="text"
+								class="form-control bg-transparent border-primary p-3"
+								placeholder="Type search keyword" />
+							<button class="btn btn-primary px-4">
+								<i class="bi bi-search"></i>
+							</button>
+						</div>
+					</div>
 				</div>
-			</form>
+			</div>
 		</div>
+		<!-- Full Screen Search End -->
+
+		<section>
+			<div>
+				<section class="featured-listings text-center py-16">
+					<h1 class="featured-events-heading">Explore Our Featured Events</h1>
+					<div class="slick-carousel">
+						<div class="carousel-item">
+							<!-- Featured Listings Content 1 -->
+						</div>
+						<div class="carousel-item">
+							<!-- Featured Listings Content 2 -->
+						</div>
+						<div class="carousel-item">
+							<!-- Featured Listings Content 3 -->
+						</div>
+					</div>
+				</section>
+				<h1>New Events</h1>
+				<section class="recent-listings">
+					<div
+						id="event-container"
+						class="slick-carousel">
+						<!-- Property data will be dynamically added here -->
+					</div>
+				</section>
+			</div>
+
+			<div
+				id="applicationModal"
+				class="modal"
+				tabindex="-1"
+				role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content bg-white p-8 rounded-lg shadow-md">
+						<span
+							class="close absolute top-2 right-2 text-gray-500 cursor-pointer text-2xl"
+							data-dismiss="modal"
+							>&times;</span
+						>
+						<form
+							id="applicationForm"
+							class="mt-4">
+							<label
+								for="name"
+								class="block text-sm font-medium text-gray-700"
+								>Name:</label
+							>
+							<input
+								type="text"
+								id="name"
+								class="form-control"
+								required />
+
+							<label
+								for="mobile"
+								class="block mt-4 text-sm font-medium text-gray-700"
+								>Mobile Number:</label
+							>
+							<input
+								type="tel"
+								id="mobile"
+								class="form-control"
+								required />
+
+							<label
+								for="email"
+								class="block mt-4 text-sm font-medium text-gray-700"
+								>Email:</label
+							>
+							<input
+								type="email"
+								id="email"
+								class="form-control"
+								required />
+
+							<label
+								for="eventName"
+								class="block mt-4 text-sm font-medium text-gray-700"
+								>Event Name:</label
+							>
+							<input
+								type="text"
+								id="eventName"
+								class="form-control"
+								disabled />
+
+							<label
+								for="eventFee"
+								class="block mt-4 text-sm font-medium text-gray-700"
+								>Event Fee:</label
+							>
+							<input
+								type="text"
+								id="eventFee"
+								class="form-control"
+								disabled />
+
+							<input
+								type="submit"
+								value="Submit"
+								class="mt-6 btn btn-primary" />
+							<div
+								id="successMessage"
+								style="display: none; color: green"
+								class="mt-4">
+								Application submitted successfully!
+							</div>
+
+							<!-- Mock payment gateway section with Font Awesome icons at the bottom of the form -->
+							<div class="mt-8">
+								<p class="text-sm font-medium text-gray-700 mb-2">
+									Mock Payment Gateway
+								</p>
+								<i class="fab fa-cc-visa text-xl text-blue-500 mr-2"></i>
+								<i class="fab fa-cc-mastercard text-xl text-red-500 mr-2"></i>
+								<i class="fab fa-cc-amex text-xl text-green-500 mr-2"></i>
+								<i class="fab fa-cc-discover text-xl text-orange-500 mr-2"></i>
+								<i class="fas fa-mobile-alt text-xl text-purple-500 mr-2"></i>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<!-- Footer Start -->
 		<div
@@ -787,19 +925,18 @@ placeholder="Your Email" />
 		<!-- JavaScript Libraries -->
 		<script src="lib/code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script src="lib/cdn.jsdelivr.net/npm/bootstrap%405.0.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="lib/wow/wow.min.js"></script>
 		<script src="lib/easing/easing.min.js"></script>
 		<script src="lib/waypoints/waypoints.min.js"></script>
-		<script src="lib/counterup/counterup.min.js"></script>
-		<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
+		<script src="lib/wow/wow.min.js"></script>
+		<!-- <script src="lib/counterup/counterup.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 		<!-- Template Javascript -->
 		<script
 			type="module"
 			src="js/script.js"></script>
 		<script
 			type="module"
-			src="js/uploadContact.js"></script>
+			src="js/events.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

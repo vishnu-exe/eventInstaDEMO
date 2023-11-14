@@ -118,6 +118,7 @@ if (foundersData && foundersData.length > 0) {
 
 const careersData = JSON.parse(sessionStorage.getItem("careersData"));
 
+
 if (careersData && careersData.length > 0) {
 	const moreLink = document.getElementById("more");
 	moreLink.style.display = "block";

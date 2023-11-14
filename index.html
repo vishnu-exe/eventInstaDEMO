@@ -18,6 +18,7 @@
 			name="description" />
 
 		<!-- Favicon -->
+
 		<link
 			rel="icon"
 			href="favicon.ico" />
@@ -59,6 +60,15 @@
 		<link
 			href="css/style.css"
 			rel="stylesheet" />
+
+		<style>
+			.modal {
+				display: none;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -131,6 +141,12 @@
 							href="./about.html"
 							class="nav-item nav-link"
 							>About</a
+						>
+						<a
+							href="./events.html"
+							class="nav-item nav-link"
+							id="events"
+							>Events</a
 						>
 						<a
 							href="./service.html"
@@ -237,9 +253,19 @@
 									>Leads</a
 								>
 								<a
+									href="./paymentLeads.html"
+									class="dropdown-item"
+									>Payments Leads</a
+								>
+								<a
 									href="./careerLeads.html"
 									class="dropdown-item"
-									>Career Leads</a
+									>Career Applicants</a
+								>
+								<a
+									href="./eventLeads.html"
+									class="dropdown-item"
+									>Event Leads</a
 								>
 								<a
 									href="./add-gallery.html"
@@ -297,14 +323,14 @@
 									>Manage Clients</a
 								>
 								<a
-									href="./paymentLeads.html"
-									class="dropdown-item"
-									>Manage Payments</a
-								>
-								<a
 									href="./uploadFounder.html"
 									class="dropdown-item"
 									>Manage Founders</a
+								>
+								<a
+									href="./addEvents.html"
+									class="dropdown-item"
+									>Manage Events</a
 								>
 								<button
 									id="logout"
@@ -337,9 +363,12 @@
 							<div
 								class="p-3"
 								style="max-width: 900px">
-								<h1
+								<h3
 									class="display-1 text-white mb-md-4 animated zoomIn"
-									id="homePageWelcome"></h1>
+									id="webAppName1"></h3>
+								<h5
+									class="display-1 text-white mb-md-4 animated zoomIn"
+									id="homePageWelcome"></h5>
 								<a
 									href="contact.html"
 									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
@@ -363,6 +392,9 @@
 							<div
 								class="p-3"
 								style="max-width: 900px">
+								<h1
+									class="display-1 text-white mb-md-4 animated zoomIn"
+									id="webAppName2"></h1>
 								<h5
 									class="text-white text-uppercase mb-3 animated slideInDown"
 									id="homePageCaption"></h5>

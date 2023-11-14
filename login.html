@@ -43,11 +43,11 @@
 
 		<!-- Icon Font Stylesheet -->
 		<link
-		href="lib/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-		rel="stylesheet" />
-	<link
-		href="lib/cdn.jsdelivr.net/npm/bootstrap-icons%401.4.1/font/bootstrap-icons.css"
-		rel="stylesheet" />
+			href="lib/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+			rel="stylesheet" />
+		<link
+			href="lib/cdn.jsdelivr.net/npm/bootstrap-icons%401.4.1/font/bootstrap-icons.css"
+			rel="stylesheet" />
 		<!-- Libraries Stylesheet -->
 		<link
 			href="lib/owlcarousel/assets/owl.carousel.min.css"
@@ -220,6 +220,12 @@
 							>About</a
 						>
 						<a
+							href="./events.html"
+							class="nav-item nav-link"
+							id="events"
+							>Events</a
+						>
+						<a
 							href="./service.html"
 							class="nav-item nav-link"
 							id="services"
@@ -304,7 +310,7 @@
 						<div class="nav-item dropdown">
 							<a
 								href="#"
-								class="nav-link dropdown-toggle"
+								class="nav-link dropdown-toggle active"
 								data-bs-toggle="dropdown"
 								id="adminActivites"
 								style="display: none"
@@ -323,9 +329,19 @@
 									>Leads</a
 								>
 								<a
+									href="./paymentLeads.html"
+									class="dropdown-item"
+									>Payments Leads</a
+								>
+								<a
 									href="./careerLeads.html"
 									class="dropdown-item"
-									>Career Leads</a
+									>Career Applicants</a
+								>
+								<a
+									href="./eventLeads.html"
+									class="dropdown-item"
+									>Event Leads</a
 								>
 								<a
 									href="./add-gallery.html"
@@ -383,14 +399,14 @@
 									>Manage Clients</a
 								>
 								<a
-									href="./paymentLeads.html"
-									class="dropdown-item"
-									>Manage Payments</a
-								>
-								<a
 									href="./uploadFounder.html"
 									class="dropdown-item"
 									>Manage Founders</a
+								>
+								<a
+									href="./addEvents.html"
+									class="dropdown-item"
+									>Manage Events</a
 								>
 								<button
 									id="logout"
@@ -530,7 +546,8 @@
 									name="email"
 									id="email"
 									class="form-control"
-									placeholder="Email" />
+									placeholder="Email"
+									value="admin@relaxxaa.com" />
 								<span
 									id="emailError"
 									class="error-message"></span>
@@ -547,12 +564,14 @@
 								class="fas fa-eye"
 								id="passwordToggle"></i>
 						</div>
+
 						<input
 							type="password"
 							name="password"
 							id="password"
 							class="form-control"
-							placeholder="Password" />
+							placeholder="Password"
+							value="123456" />
 						<span
 							id="passWordError"
 							class="error-message"></span>

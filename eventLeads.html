@@ -60,44 +60,175 @@
 			href="css/style.css"
 			rel="stylesheet" />
 		<style>
-			.section-heading {
+			.success-message {
+				display: none;
+				background-color: #4caf50;
 				color: white;
-			}
-
-			label {
-				color: black;
-				font-weight: 500;
-			}
-
-			#contact-form {
-				width: 100%;
-				max-width: 500px;
-				margin: auto;
+				text-align: center;
 				padding: 10px;
-				border: 1px solid #ccc;
+				position: fixed;
+				left: 35%;
+			}
+
+			/* Center the form */
+			#form {
+				text-align: center;
+				display: none;
+			}
+
+			/* Style the table container */
+			.table-responsive-xl {
+				text-align: center;
+				margin-left: 0;
+				padding-left: 0;
+			}
+
+			/* Style the table */
+			#table {
+				width: 100%;
+				text-align: center;
+			}
+
+			/* Style table headers */
+			#table thead th {
+				background-color: #343a40;
+				/* Header background color */
+				color: #fff;
+				/* Header text color */
+			}
+
+			/* Style table rows */
+			#leadsTableBody tr {
+				background-color: #f8f9fa;
+				/* Row background color */
+			}
+
+			/* Style the Update button */
+			#updateButton {
+				margin-top: 10px;
+			}
+
+			/* Style the success message */
+			#successMessage {
+				color: green;
+				display: none;
+			}
+
+			/* Center-align the total records count */
+			#totalRecordsCount {
+				text-align: center;
+			}
+
+			/* Style the search container */
+			.border-primary {
+				margin: 10px;
+				padding: 10px;
+				background-color: #e9ecef;
+			}
+
+			/* Style the Search button */
+			#searchButton {
+				margin-top: 10px;
+				font-size: 14px;
+				padding: 5px 10px;
+			}
+
+			/* Style the Download Excel button */
+			#downloadExcelButton {
+				margin-top: 10px;
+				font-size: 14px;
+				padding: 5px 10px;
+			}
+
+			.btn {
+				display: inline-block;
+				padding: 10px 20px;
+				margin: 5px;
+				border: none;
 				border-radius: 5px;
-				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+				cursor: pointer;
+				font-weight: bold;
+				text-align: center;
+				text-decoration: none;
+				transition: background-color 0.3s ease;
 			}
 
-			.form-control {
-				border: 1px solid #ccc;
-				border-radius: 10px;
-				padding: 10px;
+			.btn-primary {
+				background-color: #007bff;
+				color: #fff;
+			}
+
+			.btn-primary:hover {
+				background-color: #0056b3;
+			}
+
+			.btn-secondary {
+				background-color: #6c757d;
+				color: #fff;
+			}
+
+			.btn-secondary:hover {
+				background-color: #545b62;
+			}
+
+			.btn-success {
+				background-color: #28a745;
+				color: #fff;
+			}
+
+			.btn-success:hover {
+				background-color: #218838;
+			}
+
+			.btn-danger {
+				background-color: #dc3545;
+				color: #fff;
+			}
+
+			.btn-danger:hover {
+				background-color: #c82333;
+			}
+
+			/* Styles for the modal */
+			.modal {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
 				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.7);
+				overflow: auto;
 			}
 
-			.form-group {
-				width: 100%;
-				padding: 0 10px;
+			/* Styles for the modal content */
+			.modal-content {
+				background-color: #fefefe;
+				margin: 15% auto;
+				/* Adjust this value to center vertically */
+				padding: 20px;
+				border: 1px solid #888;
+				width: 50%;
+				/* Adjust the modal width as needed */
 			}
 
-			@media (max-width: 600px) {
-				#contact-form {
-					padding: 5px;
-				}
+			/* Style for the close button */
+			.close {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				font-size: 20px;
+				font-weight: bold;
+				cursor: pointer;
+			}
 
-				.form-control {
-					padding: 5px;
+			@media (max-width: 768px) {
+				.modal-content {
+					width: 80%;
+					/* Adjust the modal width for smaller screens */
+					margin: 10% auto;
+					/* Center the modal vertically */
+					padding: 10px;
 				}
 			}
 		</style>
@@ -149,7 +280,8 @@
 					class="navbar-brand p-0">
 					<img
 						id="logoimage"
-						alt="logo" />
+						alt="logo"
+						style="padding: 5px; margin: auto; height: 90px" />
 					<!-- <h1 class="m-0">TOT FD</h1> -->
 				</a>
 				<button
@@ -172,6 +304,12 @@
 							href="./about.html"
 							class="nav-item nav-link"
 							>About</a
+						>
+						<a
+							href="./events.html"
+							class="nav-item nav-link"
+							id="events"
+							>Events</a
 						>
 						<a
 							href="./service.html"
@@ -251,8 +389,9 @@
 						</div>
 						<a
 							href="./login.html"
-							class="nav-item nav-link"
 							id="login"
+							class="nav-item nav-link"
+							style="display: none"
 							>Login</a
 						>
 						<div class="nav-item dropdown">
@@ -288,7 +427,7 @@
 								>
 								<a
 									href="./eventLeads.html"
-									class="dropdown-item"
+									class="dropdown-item active"
 									>Event Leads</a
 								>
 								<a
@@ -376,9 +515,7 @@
 				style="margin-bottom: 90px">
 				<div class="row py-5">
 					<div class="col-12 pt-lg-5 mt-lg-5 text-center">
-						<h1 class="display-4 text-white animated zoomIn">
-							Upload Contact Info
-						</h1>
+						<h1 class="display-4 text-white animated zoomIn">Event Leads</h1>
 						<a
 							href="#"
 							class="h5 text-white"
@@ -388,8 +525,8 @@
 						<a
 							href="#"
 							class="h5 text-white"
-							>Upload Contact Info</a
-						>
+							>Manage Event Leads
+						</a>
 					</div>
 				</div>
 			</div>
@@ -460,7 +597,7 @@
 							type="button"
 							class="btn btn-secondary"
 							data-bs-dismiss="modal">
-							Cancel
+							Cancel0
 						</button>
 						<!-- Logout button to trigger the logout -->
 						<button
@@ -479,107 +616,92 @@
 			style="text-align: center"
 			id="message"></p>
 		<!-- Message of success -->
-		<div>
-			<form
-				id="contact-form"
-				style="margin-top: 40px">
-				<div class="form-group mt-lg-3">
-					<label for="mobile">Mobile Number</label>
-					<input
-						type="text"
-						id="mobile"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="mobile-error"
-						style="display: none"
-						>Please enter mobile number</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="email">Email ID</label>
-					<input
-						type="email"
-						id="email"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="email-error"
-						style="display: none"
-						>Please enter a valid email</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="map-location">Address (Location)</label>
-					<input
-						type="text"
-						id="location"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="location-error2"
-						style="display: none"
-						>Please enter valid Address</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="map-location">Map Location (URL)</label>
-					<input
-						type="text"
-						id="map-location"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="location-error"
-						style="display: none"
-						>Please enter map location URL</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="facebook-link">Facebook Link (Optional)</label>
-					<input
-						type="text"
-						id="facebook-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="instagram-link">Instagram Link (Optional)</label>
-					<input
-						type="text"
-						id="instagram-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="youtube-link">Youtube Link (Optional)</label>
-					<input
-						type="text"
-						id="youtube-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="twitter-link">Twitter Link (Optional)</label>
-					<input
-						type="text"
-						id="twitter-link"
-						class="form-control" />
-				</div>
+		<section>
+			<div style="text-align: center">
+				<button
+					class="btn btn-primary"
+					id="allLeadsButton">
+					All Leads</button
+				>&nbsp;&nbsp;
+				<button
+					class="btn btn-primary"
+					id="AcceptedLeadsButton">
+					Accepted Leads</button
+				>&nbsp;&nbsp;
+				<button
+					class="btn btn-primary"
+					id="rejectedLeadsButton">
+					Rejected Leads</button
+				>&nbsp;&nbsp;
+			</div>
+			<br />
+			<div
+				id="Search"
+				style="text-align: center"
+				class="rounded border border-primary border-3">
+				Search by Events:
+				<input
+					type="text"
+					id="designationSearch"
+					class="input" />
+				Total Records Count :
+				<span id="totalRecordsCount">0</span> &nbsp;&nbsp;&nbsp;
+				<button
+					id="downloadExcelButton"
+					class="btn btn-primary">
+					Download Into Excel
+				</button>
+			</div>
 
-				<div id="message"></div>
+			<p
+				id="noLeadsMessage"
+				class="h1"
+				style="text-align: center">
+				No leads to display.
+			</p>
+			<br />
+			<form
+				id="form"
+				onsubmit="save()"
+				style="display: none">
 				<div
-					class="form-group mt-3"
-					style="text-align: center">
+					class="table-responsive-xl"
+					style="text-align: center; margin-left: 0; padding-left: 0">
+					<table
+						id="table"
+						class="table table-bordered table-responsive-md">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">SNO</th>
+								<th scope="col">Name</th>
+								<th scope="col">Mobile Number</th>
+								<th scope="col">Email</th>
+								<th scope="col">Event</th>
+								<th scope="col">Payment Status</th>
+								<th scope="col">Status</th>
+							</tr>
+						</thead>
+						<tbody id="leadsTableBody">
+							<!-- Rows will be added here dynamically -->
+						</tbody>
+					</table>
+				</div>
+				<div class="text-center">
 					<input
-						id="submit-button"
 						type="submit"
-						value="Submit"
-						class="btn btn-primary" />
+						class="btn btn-primary"
+						id="updateButton"
+						value="Update" />
+					<div
+						class="success-message"
+						id="successMessage">
+						Updated Successfully
+					</div>
+					&nbsp;&nbsp;
+					<h3 id="message"></h3>
 				</div>
 			</form>
-		</div>
+		</section>
 
 		<!-- Footer Start -->
 		<div
@@ -604,11 +726,11 @@ amet erat lorem stet eos. Diam amet et kasd eos duo.
 </p> -->
 							<!-- <form action="#">
 <div class="input-group">
-<input
-type="text"
-class="form-control border-white p-3"
-placeholder="Your Email" />
-<button class="btn btn-dark">Sign Up</button>
+    <input
+        type="text"
+        class="form-control border-white p-3"
+        placeholder="Your Email" />
+    <button class="btn btn-dark">Sign Up</button>
 </div>
 </form> -->
 						</div>
@@ -792,14 +914,19 @@ placeholder="Your Email" />
 		<script src="lib/waypoints/waypoints.min.js"></script>
 		<script src="lib/counterup/counterup.min.js"></script>
 		<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js"></script>
 
 		<!-- Template Javascript -->
 		<script
 			type="module"
-			src="js/script.js"></script>
+			src="./js/script.js"></script>
+		a
 		<script
 			type="module"
-			src="js/uploadContact.js"></script>
+			src="./js/eventLeads.js"></script>
+
 		<script src="js/main.js"></script>
 	</body>
 </html>

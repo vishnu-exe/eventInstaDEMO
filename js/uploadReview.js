@@ -77,6 +77,7 @@ const messageDiv = document.getElementById("message");
 const updateMessageDiv = document.getElementById("updatemessage");
 const submitBtn = document.getElementById("submit-btn");
 const updateBtn = document.getElementById("update-btn");
+const deleteBtn = document.getElementById("deleteButton");
 
 updateBtn.addEventListener("click", async (e) => {
 	e.preventDefault();
@@ -161,7 +162,7 @@ async function populateFormAndButtons(name) {
 		if (matchingReview) {
 			nameInput.value = matchingReview.name;
 			textInput.value = matchingReview.text;
-
+			deleteBtn.style.display = "block";
 			updateBtn.style.display = "block";
 			submitBtn.style.display = "none";
 
@@ -170,10 +171,12 @@ async function populateFormAndButtons(name) {
 		} else {
 			submitBtn.style.display = "block";
 			updateBtn.style.display = "none";
+			deleteBtn.style.display = "none";
 		}
 	} else {
 		submitBtn.style.display = "block";
 		updateBtn.style.display = "none";
+		deleteBtn.style.display = "none";
 	}
 }
 
@@ -185,4 +188,55 @@ nameInput.addEventListener("keyup", () => {
 		const enteredName = nameInput.value.trim();
 		await populateFormAndButtons(enteredName);
 	}, 3000);
+});
+
+deleteBtn.addEventListener("click", async (event) => {
+	event.preventDefault();
+	event.stopPropagation();
+
+	const name = document.getElementById("name").value.trim();
+
+	if (!name) {
+		messageDiv.textContent = "Please enter the founder name to delete.";
+		return;
+	}
+
+	try {
+		const docSnapshot = await getDoc(reviewDocRef);
+
+		if (docSnapshot.exists()) {
+			const data = docSnapshot.data();
+			const reviews = data.reviews || [];
+			const matchingReviewIndex = reviews.findIndex(
+				(review) => review.name === name
+			);
+
+			if (matchingReviewIndex !== -1) {
+				reviews.splice(matchingReviewIndex, 1);
+
+				await updateDoc(reviewDocRef, { reviews });
+
+				messageDiv.textContent =
+					"Review data deleted successfully. Go to the Home Page and refresh to see the changes.";
+				updateMessageDiv.textContent = "";
+
+				nameInput.value = "";
+				textInput.value = "";
+				picInput.value = "";
+				updateBtn.style.display = "none";
+
+				setTimeout(function () {
+					messageDiv.textContent = "";
+				}, 2000);
+			} else {
+				messageDiv.textContent = "No matching Review found.";
+			}
+		} else {
+			messageDiv.textContent = "No reviews found for the this Name.";
+		}
+	} catch (error) {
+		console.error("Error deleting review data:", error);
+		messageDiv.textContent =
+			"An error occurred while deleting the review data. Please try again.";
+	}
 });

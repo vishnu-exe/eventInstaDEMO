@@ -61,73 +61,116 @@
 			rel="stylesheet" />
 
 		<style>
-			/* Center the form in the middle of the page */
-			#careersForm {
-				width: 100%;
-				max-width: 500px;
-				/* Adjust the maximum width as needed */
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f5f5f5;
+			}
+
+			.container {
+				max-width: 1200px;
 				margin: 0 auto;
 				padding: 20px;
-				box-sizing: border-box;
 			}
 
-			/* Style form groups and labels */
+			.form-container {
+				background: white;
+				padding: 20px;
+				border-radius: 8px;
+				margin: 0 auto;
+				max-width: 600px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+
 			.form-group {
-				margin-top: 1.5rem;
+				margin-bottom: 20px;
 			}
 
-			label {
+			.buttons {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.buttons .form-group {
+				margin-top: 10px;
+			}
+
+			.form-group label {
+				display: block;
 				font-weight: bold;
 			}
 
-			/* Style input and select elements */
-			.form-control {
+			.form-group input[type="text"],
+			.form-group input[type="number"],
+			.form-group select,
+			.form-group textarea {
 				width: 100%;
-				padding: 0.375rem 0.75rem;
-				font-size: 1rem;
-				border: 1px solid #ced4da;
-				border-radius: 0.25rem;
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
 			}
 
-			textarea.form-control {
-				resize: vertical;
+			.form-group select {
+				height: 40px;
 			}
 
-			/* Display error messages */
-			.alert.alert-danger {
-				display: none;
-				color: #721c24;
-				background-color: #f8d7da;
-				border: 1px solid #f5c6cb;
-				border-radius: 0.25rem;
-				padding: 0.75rem 1.25rem;
+			.form-group button,
+			.form-group input[type="submit"] {
+				background-color: #007bff;
+				color: white;
+				border: none;
+				padding: 10px 20px;
+				border-radius: 4px;
+				cursor: pointer;
 			}
 
-			/* Style buttons */
-			.buttons {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				margin-top: 1.5rem;
+			.form-group button:hover,
+			.form-group input[type="submit"]:hover {
+				background-color: #0056b3;
 			}
 
-			.buttons .btn {
-				margin-right: 0.5rem;
+			table {
+				width: 100%;
+				border-collapse: collapse;
 			}
 
-			/* Make it mobile responsive */
+			table,
+			th,
+			td {
+				border: 1px solid #ccc;
+			}
+
+			th,
+			td {
+				padding: 10px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			.form-container {
+				max-width: 600px;
+				overflow-x: auto;
+				/* Add horizontal scroll for smaller screens if necessary */
+			}
+
 			@media (max-width: 768px) {
-				#careersForm {
-					padding: 10px;
+				.form-container {
+					max-width: 100%;
 				}
+			}
 
+			@media (min-width: 768px) {
+				/* For screens 768px or wider (laptops and larger) */
 				.buttons {
-					flex-direction: column;
+					flex-direction: row;
 				}
 
-				.buttons .btn {
-					margin-right: 0;
-					margin-bottom: 0.5rem;
+				.buttons .form-group {
+					margin: 0 10px;
+					/* Add horizontal margin between buttons */
 				}
 			}
 		</style>
@@ -307,9 +350,19 @@
 									>Leads</a
 								>
 								<a
+									href="./paymentLeads.html"
+									class="dropdown-item"
+									>Payments Leads</a
+								>
+								<a
 									href="./careerLeads.html"
 									class="dropdown-item"
-									>Career Leads</a
+									>Career Applicants</a
+								>
+								<a
+									href="./eventLeads.html"
+									class="dropdown-item"
+									>Event Leads</a
 								>
 								<a
 									href="./add-gallery.html"
@@ -358,7 +411,7 @@
 								>
 								<a
 									href="./uploadCareers.html"
-									class="dropdown-item active"
+									class="dropdown-item"
 									>Manage Careers</a
 								>
 								<a
@@ -367,14 +420,14 @@
 									>Manage Clients</a
 								>
 								<a
-									href="./paymentLeads.html"
-									class="dropdown-item"
-									>Manage Payments</a
-								>
-								<a
 									href="./uploadFounder.html"
 									class="dropdown-item"
 									>Manage Founders</a
+								>
+								<a
+									href="./addEvents.html"
+									class="dropdown-item"
+									>Manage Events</a
 								>
 								<button
 									id="logout"
@@ -497,132 +550,131 @@
 			style="text-align: center"
 			id="message"></p>
 		<!-- Message of success -->
-		<div
-			class="containers"
-			style="padding-left: 20px">
-			<div
-				class="form-container"
-				id="formContainer">
+		<div class="container">
+			<div class="form-container">
 				<h2
 					class="section-heading"
 					style="text-align: center">
 					Upload Careers Data
 				</h2>
-				<hr
-					style="
-						border: none;
-						border-top: 2px solid black;
-						width: 75%;
-						margin: 0 auto;
-					" />
-				<div style="text-align: center; padding: 20px">
-					<form id="careersForm">
-						<div class="form-group mt-lg-3">
-							<label for="jobDesignation">Job Designation</label>
-							<input
-								type="text"
-								id="jobDesignation"
-								class="form-control" />
-							<span
-								class="alert alert-danger"
-								id="designationError"
-								style="display: none"
-								>Please Enter Designation</span
-							>
-						</div>
-						<div class="form-group mt-lg-3">
-							<label for="minimumQualification">Minimum Qualification</label>
-							<input
-								type="text"
-								id="minimumQualification"
-								class="form-control" />
-							<span
-								class="alert alert-danger"
-								id="qualificationError"
-								style="display: none"
-								>Please Enter Minimum Qualification</span
-							>
-						</div>
-						<div class="form-group mt-lg-3">
-							<label for="experience">Experience (Optional)</label>
-							<input
-								type="text"
-								id="experience"
-								class="form-control" />
-						</div>
-						<div class="form-group mt-lg-3">
-							<label for="jobDescription">Job Description</label>
-							<textarea
-								cols="6"
-								rows="3"
-								id="jobDescription"
-								class="form-control"></textarea>
-							<span
-								class="alert alert-danger"
-								id="descriptionError"
-								style="display: none"
-								>Please Enter Description</span
-							>
-						</div>
-						<div class="form-group mt-lg-3">
-							<label for="gender">Select Gender</label>
-							<select
-								id="gender"
-								class="form-control">
-								<option
-									value=""
-									selected
-									disabled>
-									Select
-								</option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-								<option value="Both">Both</option>
-							</select>
-							<span
-								class="alert alert-danger"
-								id="genderError"
-								style="display: none"
-								>Please Select Gender</span
-							>
-						</div>
-						<div id="Message1"></div>
-						<div class="buttons">
-							<div class="form-group mt-3">
-								<input
-									id="submitButton"
-									type="submit"
-									value="Submit"
-									class="btn btn-primary" />
-							</div>
-							<div class="form-group mt-3">
-								<button
-									id="updateButton"
-									type="button"
-									class="btn btn-primary">
-									Update
-								</button>
-							</div>
-							<div class="form-group mt-3">
-								<button
-									id="deleteButton"
-									type="button"
-									class="btn btn-primary">
-									Delete
-								</button>
-							</div>
-							<br />
-							<div class="form-group mt-3">
-								<a
-									class="btn btn-primary"
-									href="careers.html"
-									>Go to Careers</a
-								>
-							</div>
-							<br />
-						</div>
-					</form>
+				<!-- Your form elements go here -->
+
+				<!-- Sample form-group for reference -->
+				<div class="form-group mt-lg-3">
+					<label for="jobDesignation">Job Designation</label>
+					<input
+						type="text"
+						id="jobDesignation"
+						class="form-control" />
+					<span
+						class="alert alert-danger"
+						id="designationError"
+						style="display: none"
+						>Please Enter Designation</span
+					>
 				</div>
+				<div class="form-group mt-lg-3">
+					<label for="minimumQualification">Minimum Qualification</label>
+					<input
+						type="text"
+						id="minimumQualification"
+						class="form-control" />
+					<span
+						class="alert alert-danger"
+						id="qualificationError"
+						style="display: none"
+						>Please Enter Minimum Qualification</span
+					>
+				</div>
+				<div class="form-group mt-lg-3">
+					<label for="experience">Experience (Optional)</label>
+					<input
+						type="text"
+						id="experience"
+						class="form-control" />
+				</div>
+				<div class="form-group mt-lg-3">
+					<label for="jobDescription">Job Description</label>
+					<textarea
+						cols="6"
+						rows="3"
+						id="jobDescription"
+						class="form-control"></textarea>
+					<span
+						class="alert alert-danger"
+						id="descriptionError"
+						style="display: none"
+						>Please Enter Description</span
+					>
+				</div>
+				<div class="form-group mt-lg-3">
+					<label for="gender">Select Gender</label>
+					<select
+						id="gender"
+						class="form-control">
+						<option
+							value=""
+							selected
+							disabled>
+							Select
+						</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Both">Both</option>
+					</select>
+					<span
+						class="alert alert-danger"
+						id="genderError"
+						style="display: none"
+						>Please Select Gender</span
+					>
+				</div>
+
+				<div
+					class="buttons"
+					style="display: flex; justify-content: space-between">
+					<div class="form-group mt-3">
+						<input
+							id="submitButton"
+							type="submit"
+							value="Submit"
+							class="btn btn-primary" />
+					</div>
+					<div class="form-group mt-3">
+						<button
+							id="updateButton"
+							type="button"
+							class="btn btn-primary">
+							Update
+						</button>
+					</div>
+					<div class="form-group mt-3">
+						<button
+							id="deleteButton"
+							type="button"
+							class="btn btn-primary">
+							Delete
+						</button>
+					</div>
+				</div>
+			</div>
+			<br />
+
+			<div class="form-container">
+				<h2
+					class="section-heading"
+					style="text-align: center">
+					Careers
+				</h2>
+				<table id="careersTable">
+					<thead>
+						<tr>
+							<th>Toggle</th>
+							<th>Job Designation</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
 			</div>
 		</div>
 

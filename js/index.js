@@ -9,6 +9,7 @@ import {
 	listAll,
 	ref,
 } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-storage.js";
+
 import { firestore, storage } from "./firebase-config.js";
 
 const totfdCollection = collection(firestore, "totfd");
@@ -52,6 +53,12 @@ function getHomePageDataFromFirestoreAndSave() {
 
 					// const captionSpan = document.getElementById("caption");
 					// captionSpan.textContent = homepageData.webAppName;
+
+					const webAppName1 = document.getElementById("webAppName1");
+					webAppName1.textContent = homepageData.webAppName;
+
+					const webAppName2 = document.getElementById("webAppName2");
+					webAppName2.textContent = homepageData.webAppName;
 
 					const homePageCaption = document.getElementById("homePageCaption");
 					homePageCaption.textContent = homepageData.homePageCaption;
@@ -353,15 +360,21 @@ function getDataFromFirestoreAndSave() {
 			if (docSnapshot.exists()) {
 				const data = docSnapshot.data();
 				const careersData = data.jobs || [];
-				console.log(data);
-				if (Array.isArray(careersData) && careersData.length > 0) {
+				//console.log(data);
+				const displayedCareers = careersData.filter(
+					(career) => career.displayed === true
+				);
+				if (Array.isArray(displayedCareers) && displayedCareers.length > 0) {
 					const moreLink = document.getElementById("more");
 					moreLink.style.display = "block";
 					const careersLink = document.getElementById("careers");
 					careersLink.style.display = "block";
 					const careersLink2 = document.getElementById("careers2");
 					careersLink2.style.display = "block";
-					sessionStorage.setItem("careersData", JSON.stringify(careersData));
+					sessionStorage.setItem(
+						"careersData",
+						JSON.stringify(displayedCareers)
+					);
 				}
 			}
 		})

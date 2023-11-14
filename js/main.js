@@ -68,29 +68,6 @@
 		$("html, body").animate({ scrollTop: 0 }, 1500, "easeInOutExpo");
 		return false;
 	});
-
-	$(".active-relatedjob-carusel").owlCarousel({
-		loop: true,
-		margin: 45,
-		dots: false,
-		loop: true,
-		autoplay: true,
-		smartSpeed: 1000,
-		responsive: {
-			0: {
-				items: 1,
-			},
-			576: {
-				items: 1,
-			},
-			768: {
-				items: 1,
-			},
-			992: {
-				items: 1,
-			},
-		},
-	});
 })(jQuery);
 
 // const imageGrid = document.querySelector(".image-grid");

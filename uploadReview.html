@@ -1,57 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta
+		http-equiv="content-type"
+		content="text/html;charset=utf-8" />
 
-<head>
-	<meta charset="utf-8">
-	<title>Startup - Startup Website Template</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<meta content="Free HTML Templates" name="keywords">
-	<meta content="Free HTML Templates" name="description">
+	<head>
+		<meta charset="utf-8" />
+		<title>Admin Activities</title>
+		<meta
+			content="width=device-width, initial-scale=1.0"
+			name="viewport" />
+		<meta
+			content="Free HTML Templates"
+			name="keywords" />
+		<meta
+			content="Free HTML Templates"
+			name="description" />
 
-	<!-- Favicon -->
-	<link
+		<!-- Favicon -->
+		<link
 			rel="icon"
 			href="favicon.ico" />
 
+		<!-- Google Web Fonts -->
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com/" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com/"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;family=Rubik:wght@400;500;600;700&amp;display=swap"
+			rel="stylesheet" />
 
-	<!-- Google Web Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com/">
-	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;family=Rubik:wght@400;500;600;700&amp;display=swap"
-		rel="stylesheet">
-
-	<!-- Icon Font Stylesheet -->
-	<link
+		<!-- Icon Font Stylesheet -->
+		<link
 			href="lib/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
 			rel="stylesheet" />
 		<link
 			href="lib/cdn.jsdelivr.net/npm/bootstrap-icons%401.4.1/font/bootstrap-icons.css"
 			rel="stylesheet" />
 
-	<!-- Libraries Stylesheet -->
-	<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-	<link href="lib/animate/animate.min.css" rel="stylesheet">
+		<!-- Libraries Stylesheet -->
+		<link
+			href="lib/owlcarousel/assets/owl.carousel.min.css"
+			rel="stylesheet" />
+		<link
+			href="lib/animate/animate.min.css"
+			rel="stylesheet" />
 
-	<!-- Customized Bootstrap Stylesheet -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Customized Bootstrap Stylesheet -->
+		<link
+			href="css/bootstrap.min.css"
+			rel="stylesheet" />
 
-	<!-- Template Stylesheet -->
-	<link href="css/style.css" rel="stylesheet">
-</head>
+		<!-- Template Stylesheet -->
+		<link
+			href="css/style.css"
+			rel="stylesheet" />
+	</head>
 
-<body>
-	<!-- Spinner Start -->
-	<div id="spinner"
-		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-		<div class="spinner"></div>
-	</div>
-	<!-- Spinner End -->
+	<body>
+		<!-- Spinner Start -->
+		<div
+			id="spinner"
+			class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+			<div class="spinner"></div>
+		</div>
+		<!-- Spinner End -->
 
-
-	<!-- Topbar Start -->
-	<!-- <div class="container-fluid bg-dark px-5 d-none d-lg-block">
+		<!-- Topbar Start -->
+		<!-- <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
@@ -77,8 +97,7 @@
             </div>
         </div>
     </div> -->
-	<!-- Topbar End -->
-
+		<!-- Topbar End -->
 
 		<!-- Navbar Start -->
 		<div class="container-fluid position-relative p-0">
@@ -216,9 +235,19 @@
 									>Leads</a
 								>
 								<a
+									href="./paymentLeads.html"
+									class="dropdown-item"
+									>Payments Leads</a
+								>
+								<a
 									href="./careerLeads.html"
-									class="dropdown-item "
-									>Career Leads</a
+									class="dropdown-item"
+									>Career Applicants</a
+								>
+								<a
+									href="./eventLeads.html"
+									class="dropdown-item"
+									>Event Leads</a
 								>
 								<a
 									href="./add-gallery.html"
@@ -262,7 +291,7 @@
 								>
 								<a
 									href="./uploadReview.html"
-									class="dropdown-item active"
+									class="dropdown-item"
 									>Manage Reviews</a
 								>
 								<a
@@ -276,18 +305,18 @@
 									>Manage Clients</a
 								>
 								<a
-									href="./paymentLeads.html"
-									class="dropdown-item"
-									>Manage Payments</a
-								>
-								<a
 									href="./uploadFounder.html"
 									class="dropdown-item"
 									>Manage Founders</a
 								>
+								<a
+									href="./addEvents.html"
+									class="dropdown-item"
+									>Manage Events</a
+								>
 								<button
-								id="logout"
-								style="color: red"
+									id="logout"
+									style="color: red"
 									class="nav-link custom-brand"
 									data-bs-toggle="modal"
 									data-bs-target="#logoutConfirmationModal">
@@ -323,93 +352,156 @@
 		</div>
 		<!-- Navbar End -->
 
-
-	<!-- Full Screen Search Start -->
-	<div class="modal fade" id="searchModal" tabindex="-1">
-		<div class="modal-dialog modal-fullscreen">
-			<div class="modal-content" style="background: rgba(9, 30, 62, .7);">
-				<div class="modal-header border-0">
-					<button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body d-flex align-items-center justify-content-center">
-					<div class="input-group" style="max-width: 600px;">
-						<input type="text" class="form-control bg-transparent border-primary p-3"
-							placeholder="Type search keyword">
-						<button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+		<!-- Full Screen Search Start -->
+		<div
+			class="modal fade"
+			id="searchModal"
+			tabindex="-1">
+			<div class="modal-dialog modal-fullscreen">
+				<div
+					class="modal-content"
+					style="background: rgba(9, 30, 62, 0.7)">
+					<div class="modal-header border-0">
+						<button
+							type="button"
+							class="btn bg-white btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div
+						class="modal-body d-flex align-items-center justify-content-center">
+						<div
+							class="input-group"
+							style="max-width: 600px">
+							<input
+								type="text"
+								class="form-control bg-transparent border-primary p-3"
+								placeholder="Type search keyword" />
+							<button class="btn btn-primary px-4">
+								<i class="bi bi-search"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Full Screen Search End -->
+		<!-- Full Screen Search End -->
 
-	<!-- logout -->
-	<div class="modal fade" id="logoutConfirmationModal" tabindex="-1" aria-labelledby="logoutConfirmationModalLabel"
-		data-bs-backdrop="static" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="logoutConfirmationModalLabel">
-						Confirm Logout
-					</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Are you sure you want to logout?</div>
-				<div class="modal-footer">
-					<!-- Cancel button to close the modal -->
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-						Cancel
-					</button>
-					<!-- Logout button to trigger the logout -->
-					<button type="button" class="btn btn-primary" id="confirmLogoutBtn">
-						Logout
-					</button>
+		<!-- logout -->
+		<div
+			class="modal fade"
+			id="logoutConfirmationModal"
+			tabindex="-1"
+			aria-labelledby="logoutConfirmationModalLabel"
+			data-bs-backdrop="static"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5
+							class="modal-title"
+							id="logoutConfirmationModalLabel">
+							Confirm Logout
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">Are you sure you want to logout?</div>
+					<div class="modal-footer">
+						<!-- Cancel button to close the modal -->
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal">
+							Cancel
+						</button>
+						<!-- Logout button to trigger the logout -->
+						<button
+							type="button"
+							class="btn btn-primary"
+							id="confirmLogoutBtn">
+							Logout
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<p
+			class="h1"
+			style="text-align: center"
+			id="message"></p>
+		<!-- Message of success -->
+		<div class="container">
+			<div class="row mt-5">
+				<form
+					id="review-form"
+					style="max-width: 500px; margin: 0 auto">
+					<div class="form-group mt-lg-3">
+						<label for="name">Name</label>
+						<input
+							type="text"
+							id="name"
+							class="form-control" />
+					</div>
+					<div class="form-group mt-lg-3">
+						<label for="text">Text</label>
+						<input
+							type="text"
+							id="text"
+							class="form-control" />
+					</div>
+					<div class="form-group mt-lg-3">
+						<label for="pic">Profile Pic</label>
+						<input
+							name="inputFile"
+							class="form-control"
+							type="file"
+							id="pic"
+							required />
+					</div>
+					<div id="updatemessage"></div>
+					<div style="display: flex; justify-content: space-between">
+						<div class="form-group mt-3">
+							<input
+								id="submit-btn"
+								type="submit"
+								value="Submit"
+								class="btn btn-primary" />
+						</div>
+						<div class="form-group mt-3">
+							<button
+								id="update-btn"
+								type="button"
+								class="btn btn-primary">
+								Update
+							</button>
+						</div>
+						<div class="form-group mt-3">
+							<button
+								id="deleteButton"
+								type="button"
+								class="btn btn-primary">
+								Delete
+							</button>
+						</div>
+					</div>
+					<br />
+					<div class="col-lg-12 text-center">
+						<br />
+						<a
+							class="btn btn-primary"
+							href="reviews.html"
+							>Go to Reviews</a
+						>
+					</div>
+				</form>
+			</div>
+		</div>
 
-
-	<p class="h1" style="text-align: center;" id="message"></p><!-- Message of success -->
-	<!-- <h2 class="section-heading" style="text-align: center;">Upload Client Reviews</h2>
-	<hr style="border: none;
-			border-top: 2px solid white;
-			width: 90%;
-			margin: 0 auto;"> -->
-	<div class="row mt-5" style="float: left; padding: 0 5px">
-		<form id="review-form" style="max-width: 500px; margin: 0 auto;">
-			<div class="form-group mt-lg-3">
-				<label for="name">Name</label>
-				<input type="text" id="name" class="form-control" />
-			</div>
-			<div class="form-group mt-lg-3">
-				<label for="text">Text</label>
-				<input type="text" id="text" class="form-control" />
-			</div>
-			<div class="form-group mt-lg-3">
-				<label for="pic">Profile Pic</label>
-				<input name="inputFile" class="form-control" type="file" id="pic" required />
-			</div>
-			<div id="message"></div>
-			<div id="updatemessage"></div>
-			<div class="form-group mt-3">
-				<input id="submit-btn" type="submit" value="Submit" class="btn btn-primary" />
-			</div>
-			<br />
-			<button id="update-btn" style="position: absolute" class="btn btn-primary">
-				Update
-			</button>
-			<div class="col-lg-12 text-center">
-				<a class="btn btn-primary" href="reviews.html">Go to Reviews</a>
-			</div>
-		</form>
-
-
-		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light mt-5 wow fadeInUp"
-			data-wow-delay="0.1s">
+		<footer class="container-fluid bg-dark text-light mt-5">
 			<div class="container">
 				<div class="row gx-5">
 					<div class="col-lg-4 col-md-6 footer-about">
@@ -578,34 +670,35 @@ placeholder="Your Email" />
 					</div>
 				</div>
 			</div>
-		</div>
-		<div
-			class="container-fluid text-white"
-			style="background: #061429">
-			<div class="container text-center">
-				<div class="row justify-content-end">
-					<div class="col-lg-8 col-md-6">
-						<div
-							class="d-flex align-items-center justify-content-center"
-							style="height: 75px">
-							<p class="mb-0">
-								&copy;
-								<a
-									class="text-white border-bottom"
-									href="#"
-									id="footerMessage"></a>
-							</p>
+			<div
+				class="container-fluid text-white"
+				style="background: #061429">
+				<div class="container text-center">
+					<div class="row justify-content-end">
+						<div class="col-lg-8 col-md-6">
+							<div
+								class="d-flex align-items-center justify-content-center"
+								style="height: 75px">
+								<p class="mb-0">
+									&copy;
+									<a
+										class="text-white border-bottom"
+										href="#"
+										id="footerMessage"></a>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Footer End -->
-
+		</footer>
 
 		<!-- Back to Top -->
-		<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
+		<a
+			href="#"
+			class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"
+			><i class="bi bi-arrow-up"></i
+		></a>
 
 		<!-- JavaScript Libraries -->
 		<script src="lib/code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -617,10 +710,12 @@ placeholder="Your Email" />
 		<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
 		<!-- Template Javascript -->
-		<script type="module" src="js/script.js"></script>
-		<script type="module" src="js/uploadReview.js"></script>
+		<script
+			type="module"
+			src="js/script.js"></script>
+		<script
+			type="module"
+			src="js/uploadReview.js"></script>
 		<script src="js/main.js"></script>
-</body>
-
-
+	</body>
 </html>

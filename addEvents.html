@@ -6,7 +6,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>Admin Activities</title>
+		<title>Add Events</title>
 		<meta
 			content="width=device-width, initial-scale=1.0"
 			name="viewport" />
@@ -59,46 +59,140 @@
 		<link
 			href="css/style.css"
 			rel="stylesheet" />
+
 		<style>
+			#message {
+				text-align: center;
+				font-size: 24px;
+				font-weight: bold;
+				color: #ff5733;
+				margin-top: 20px;
+			}
+
+			.row {
+				display: flex;
+				justify-content: center;
+				/* align-items: center; */
+			}
+
+			.mb-4 {
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+			}
+
+			.form-label {
+				font-weight: bold;
+			}
+
+			.form-control[type="file"] {
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				width: 100%;
+			}
+
+			#message {
+				margin-top: 10px;
+				color: #007bff;
+				font-weight: bold;
+			}
+
+			#uploadBtn {
+				margin-top: 20px;
+				background-color: #007bff;
+				color: #fff;
+				border: none;
+				border-radius: 4px;
+				padding: 10px 20px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+
+			#uploadBtn:hover {
+				background-color: #0056b3;
+			}
+
+			#uploadBtn:disabled {
+				background-color: #ccc;
+				cursor: not-allowed;
+			}
+
 			.section-heading {
-				color: white;
+				font-size: 24px;
+				font-weight: bold;
+				margin-bottom: 20px;
+				color: #333;
+				text-align: center;
+			}
+			section {
+				padding: 20px;
+				background-color: #f8f8f8;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				max-width: 600px;
+				margin: auto;
+			}
+
+			form {
+				display: flex;
+				flex-direction: column;
 			}
 
 			label {
-				color: black;
-				font-weight: 500;
+				margin-top: 10px;
 			}
 
-			#contact-form {
+			input,
+			select {
 				width: 100%;
-				max-width: 500px;
-				margin: auto;
 				padding: 10px;
+				margin-bottom: 15px;
 				border: 1px solid #ccc;
-				border-radius: 5px;
-				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+				border-radius: 4px;
 			}
 
-			.form-control {
-				border: 1px solid #ccc;
-				border-radius: 10px;
-				padding: 10px;
-				width: 100%;
+			.input-with-symbol {
+				position: relative;
+			}
+
+			.input-with-symbol:before {
+				position: absolute;
+				left: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				color: #555;
 			}
 
 			.form-group {
-				width: 100%;
-				padding: 0 10px;
+				margin-top: 15px;
 			}
 
-			@media (max-width: 600px) {
-				#contact-form {
-					padding: 5px;
-				}
+			.image-upload-input {
+				margin-top: 5px;
+			}
 
-				.form-control {
-					padding: 5px;
-				}
+			button {
+				padding: 10px;
+				margin-top: 10px;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+
+			.btn-success {
+				background-color: #28a745;
+				color: #fff;
+			}
+
+			.btn-warning {
+				background-color: #ffc107;
+				color: #212529;
+			}
+
+			.btn-danger {
+				background-color: #dc3545;
+				color: #fff;
 			}
 		</style>
 	</head>
@@ -149,7 +243,8 @@
 					class="navbar-brand p-0">
 					<img
 						id="logoimage"
-						alt="logo" />
+						alt="logo"
+						style="padding: 5px; margin: auto; height: 90px" />
 					<!-- <h1 class="m-0">TOT FD</h1> -->
 				</a>
 				<button
@@ -172,6 +267,13 @@
 							href="./about.html"
 							class="nav-item nav-link"
 							>About</a
+						>
+						<a
+							href="./events.html"
+							class="nav-item nav-link"
+							id="events"
+							
+							>Events</a
 						>
 						<a
 							href="./service.html"
@@ -251,8 +353,9 @@
 						</div>
 						<a
 							href="./login.html"
-							class="nav-item nav-link"
 							id="login"
+							class="nav-item nav-link"
+							style="display: none"
 							>Login</a
 						>
 						<div class="nav-item dropdown">
@@ -353,7 +456,7 @@
 								>
 								<a
 									href="./addEvents.html"
-									class="dropdown-item"
+									class="dropdown-item active"
 									>Manage Events</a
 								>
 								<button
@@ -376,9 +479,7 @@
 				style="margin-bottom: 90px">
 				<div class="row py-5">
 					<div class="col-12 pt-lg-5 mt-lg-5 text-center">
-						<h1 class="display-4 text-white animated zoomIn">
-							Upload Contact Info
-						</h1>
+						<h1 class="display-4 text-white animated zoomIn">Add Events</h1>
 						<a
 							href="#"
 							class="h5 text-white"
@@ -388,7 +489,7 @@
 						<a
 							href="#"
 							class="h5 text-white"
-							>Upload Contact Info</a
+							>Add Events</a
 						>
 					</div>
 				</div>
@@ -430,8 +531,7 @@
 			</div>
 		</div>
 		<!-- Full Screen Search End -->
-
-		<!-- logout -->
+		<!-- Logout Confirmation Modal -->
 		<div
 			class="modal fade"
 			id="logoutConfirmationModal"
@@ -473,115 +573,119 @@
 				</div>
 			</div>
 		</div>
+		<!-- Logout Confirmation Modal End -->
+		<section>
+			<form id="productForm">
+				<p
+					id="successMessage"
+					style="display: none"></p>
+				<label
+					for="eventName"
+					class="text-sm font-semibold"
+					>Event Name:</label
+				>
+				<input
+					type="text"
+					id="eventNameInput"
+					class="w-full p-2 mb-4 border rounded"
+					required />
 
-		<p
-			class="h1"
-			style="text-align: center"
-			id="message"></p>
-		<!-- Message of success -->
-		<div>
-			<form
-				id="contact-form"
-				style="margin-top: 40px">
-				<div class="form-group mt-lg-3">
-					<label for="mobile">Mobile Number</label>
+				<label
+					for="eventDateTime"
+					class="text-sm font-semibold"
+					>Event Date and Time:</label
+				>
+				<input
+					type="datetime-local"
+					id="eventDateTimeInput"
+					class="w-full p-2 mb-4 border rounded"
+					required />
+
+				<label
+					for="eventLocation"
+					class="text-sm font-semibold"
+					>Event Location:</label
+				>
+				<input
+					type="text"
+					id="eventLocationInput"
+					class="w-full p-2 mb-4 border rounded"
+					required />
+
+				<label
+					for="fashionType"
+					class="text-sm font-semibold"
+					>Fashion Type:</label
+				>
+				<select
+					id="fashionTypeSelect"
+					class="w-full p-2 mb-4 border rounded">
+					<option
+						value=""
+						selected
+						disabled>
+						Select
+					</option>
+					<option value="runway">Runway Show</option>
+					<option value="exhibition">Fashion Exhibition</option>
+					<option value="workshop">Fashion Workshop</option>
+				</select>
+
+				<label for="eventFee"
+					>Event Fee<span style="color: red">*</span>:</label
+				>
+				<div class="input-with-symbol">
 					<input
 						type="text"
-						id="mobile"
-						class="form-control"
+						id="eventFee"
+						name="eventFee"
+						placeholder="Enter Event Fee"
 						required />
-					<span
-						class="alert alert-danger"
-						id="mobile-error"
-						style="display: none"
-						>Please enter mobile number</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="email">Email ID</label>
-					<input
-						type="email"
-						id="email"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="email-error"
-						style="display: none"
-						>Please enter a valid email</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="map-location">Address (Location)</label>
-					<input
-						type="text"
-						id="location"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="location-error2"
-						style="display: none"
-						>Please enter valid Address</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="map-location">Map Location (URL)</label>
-					<input
-						type="text"
-						id="map-location"
-						class="form-control"
-						required />
-					<span
-						class="alert alert-danger"
-						id="location-error"
-						style="display: none"
-						>Please enter map location URL</span
-					>
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="facebook-link">Facebook Link (Optional)</label>
-					<input
-						type="text"
-						id="facebook-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="instagram-link">Instagram Link (Optional)</label>
-					<input
-						type="text"
-						id="instagram-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="youtube-link">Youtube Link (Optional)</label>
-					<input
-						type="text"
-						id="youtube-link"
-						class="form-control" />
-				</div>
-				<div class="form-group mt-lg-3">
-					<label for="twitter-link">Twitter Link (Optional)</label>
-					<input
-						type="text"
-						id="twitter-link"
-						class="form-control" />
 				</div>
 
-				<div id="message"></div>
-				<div
-					class="form-group mt-3"
-					style="text-align: center">
-					<input
-						id="submit-button"
+				<div class="form-group mt-lg-3">
+					<label for="allOurImages">Images:</label>
+					<div id="imageInputContainer">
+						<input
+							type="file"
+							class="image-upload-input"
+							name="eventImages[]"
+							multiple />
+					</div>
+					<button
+						id="addImage"
+						type="button"
+						class="btn btn-primary mt-1">
+						&#10011; Add More Images
+					</button>
+					<p
+						id="errorText"
+						class="error-text"
+						style="color: red"></p>
+				</div>
+
+				<div class="d-flex justify-content-between align-items-center">
+					<button
 						type="submit"
-						value="Submit"
-						class="btn btn-primary" />
+						id="Submit"
+						class="btn btn-success">
+						Submit
+					</button>
+					<div>
+						<button
+							type="button"
+							class="btn btn-warning mx-2">
+							Update
+						</button>
+						<button
+							type="button"
+							class="btn btn-danger">
+							Delete
+						</button>
+					</div>
 				</div>
 			</form>
-		</div>
-
-		<!-- Footer Start -->
+		</section>
 		<div
 			class="container-fluid bg-dark text-light mt-5 wow fadeInUp"
 			data-wow-delay="0.1s">
@@ -598,19 +702,19 @@
 									id="webAppName"></h1>
 							</a>
 							<!-- <p class="mt-3 mb-4">
-Lorem diam sit erat dolor elitr et, diam lorem justo amet clita
-stet eos sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam
-amet erat lorem stet eos. Diam amet et kasd eos duo.
-</p> -->
+					Lorem diam sit erat dolor elitr et, diam lorem justo amet clita
+					stet eos sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam
+					amet erat lorem stet eos. Diam amet et kasd eos duo.
+				</p> -->
 							<!-- <form action="#">
-<div class="input-group">
-<input
-type="text"
-class="form-control border-white p-3"
-placeholder="Your Email" />
-<button class="btn btn-dark">Sign Up</button>
-</div>
-</form> -->
+					<div class="input-group">
+						<input
+							type="text"
+							class="form-control border-white p-3"
+							placeholder="Your Email" />
+						<button class="btn btn-dark">Sign Up</button>
+					</div>
+				</form> -->
 						</div>
 					</div>
 					<div class="col-lg-8 col-md-6">
@@ -794,12 +898,13 @@ placeholder="Your Email" />
 		<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
 		<!-- Template Javascript -->
+
 		<script
 			type="module"
-			src="js/script.js"></script>
+			src="./js/script.js"></script>
 		<script
 			type="module"
-			src="js/uploadContact.js"></script>
+			src="./js/add-events.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

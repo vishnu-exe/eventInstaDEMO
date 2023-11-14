@@ -217,3 +217,52 @@ deleteButton.addEventListener("click", async () => {
 		}
 	}
 });
+
+function renderCareers(careers) {
+	let careersTable = document.getElementById("careersTable");
+	let tbody = careersTable.querySelector("tbody");
+	tbody.innerHTML = "";
+  
+	careers.forEach((career, index) => {
+	  let row = document.createElement("tr");
+  
+	  let toggleCell = document.createElement("td");
+	  let toggleInput = document.createElement("input");
+	  toggleInput.type = "checkbox";
+	  toggleInput.className = "toggle-input";
+	  toggleInput.checked = career.displayed;
+	  toggleInput.addEventListener("change", async (event) => {
+		let isVisible = event.target.checked;
+		careers[index].displayed = isVisible;
+		await updateFirestoreDocument(careersDocRef, { jobs: careers });
+	  });
+	  toggleCell.appendChild(toggleInput);
+  
+	  let jobDesignationCell = document.createElement("td");
+	  jobDesignationCell.textContent = career.jobDesignation;
+  
+	  row.appendChild(toggleCell);
+	  row.appendChild(jobDesignationCell);
+  
+	  tbody.appendChild(row);
+	});
+  }
+  
+  
+async function updateFirestoreDocument(docRef, data) {
+	await updateDoc(docRef, data);
+}
+
+async function fetchCareersData() {
+	const docSnap = await getDoc(careersDocRef);
+	if (docSnap.exists()) {
+		const careersData = docSnap.data().jobs;
+		renderCareers(careersData);
+	} else {
+		console.log("No such document!");
+	}
+}
+
+fetchCareersData().catch((error) => {
+	console.log("Error getting document:", error);
+});

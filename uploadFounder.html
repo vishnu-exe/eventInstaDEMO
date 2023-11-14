@@ -336,9 +336,19 @@
 									>Leads</a
 								>
 								<a
+									href="./paymentLeads.html"
+									class="dropdown-item"
+									>Payments Leads</a
+								>
+								<a
 									href="./careerLeads.html"
 									class="dropdown-item"
-									>Career Leads</a
+									>Career Applicants</a
+								>
+								<a
+									href="./eventLeads.html"
+									class="dropdown-item"
+									>Event Leads</a
 								>
 								<a
 									href="./add-gallery.html"
@@ -396,14 +406,14 @@
 									>Manage Clients</a
 								>
 								<a
-									href="./uploadPayment.html"
+									href="./uploadFounder.html"
 									class="dropdown-item"
-									>Manage Payments</a
+									>Manage Founders</a
 								>
 								<a
-									href="./uploadFounder.html"
-									class="dropdown-item active"
-									>Manage Founders</a
+									href="./addEvents.html"
+									class="dropdown-item"
+									>Manage Events</a
 								>
 								<button
 									id="logout"
@@ -542,7 +552,8 @@
 							<input
 								type="text"
 								id="founderName"
-								class="form-control" />
+								class="form-control"
+								required />
 							<span
 								class="alert alert-danger"
 								id="nameError"
@@ -555,7 +566,8 @@
 							<input
 								type="text"
 								id="founderDesignation"
-								class="form-control" />
+								class="form-control"
+								required />
 							<span
 								class="alert alert-danger"
 								id="designationError"
@@ -569,7 +581,8 @@
 								cols="6"
 								rows="3"
 								id="founderDescription"
-								class="form-control"></textarea>
+								class="form-control"
+								required></textarea>
 							<span
 								class="alert alert-danger"
 								id="descriptionError"
@@ -582,7 +595,8 @@
 							<input
 								class="form-control"
 								type="file"
-								id="imageFile" />
+								id="imageFile"
+								required />
 						</div>
 						<div id="message"></div>
 						<div
@@ -595,7 +609,6 @@
 									value="Submit"
 									class="btn btn-primary" />
 							</div>
-							<br />
 							<div id="updateMessage"></div>
 							<div class="form-group mt-3">
 								<button
@@ -606,14 +619,23 @@
 								</button>
 							</div>
 							<div class="form-group mt-3">
-								<a
-									class="btn btn-primary"
-									href="./founders.html"
-									>Go to Founders</a
-								>
+								<button
+									id="deleteButton"
+									type="button"
+									class="btn btn-primary">
+									Delete
+								</button>
 							</div>
 						</div>
 					</form>
+					<br />
+					<div class="form-group mt-3">
+						<a
+							class="btn btn-primary"
+							href="./founders.html"
+							>Go to Founders</a
+						>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -208,3 +208,61 @@ founderNameInput.addEventListener("keyup", () => {
 		await populateFormAndButtons(enteredName);
 	}, 3000);
 });
+
+const deleteBtn = document.getElementById("deleteButton");
+
+deleteBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const founderName = founderNameInput.value.trim();
+
+    if (!founderName) {
+        messageDiv.textContent = "Please enter the founder name to delete.";
+        return;
+    }
+
+    try {
+        const docSnapshot = await getDoc(foundersDocRef);
+
+        if (docSnapshot.exists()) {
+            const data = docSnapshot.data();
+            const founders = data.founders || [];
+            const matchingFounderIndex = founders.findIndex(
+                (founder) => founder.founderName === founderName
+            );
+
+            if (matchingFounderIndex !== -1) {
+                founders.splice(matchingFounderIndex, 1);
+
+                await updateDoc(foundersDocRef, { founders });
+
+                messageDiv.textContent =
+                    "Founder data deleted successfully. Go to the Home Page and refresh to see the changes.";
+                updateMessageDiv.textContent = "";
+
+                // Clear the form
+                founderNameInput.value = "";
+                founderDesignationInput.value = "";
+                founderDescriptionInput.value = "";
+                picInput.value = "";
+
+                // Hide the update button
+                updateBtn.style.display = "none";
+
+                setTimeout(function () {
+                    messageDiv.textContent = "";
+                }, 2000);
+            } else {
+                messageDiv.textContent = "No matching founder found.";
+            }
+        } else {
+            messageDiv.textContent = "No document found for the collection.";
+        }
+    } catch (error) {
+        console.error("Error deleting founder data:", error);
+        messageDiv.textContent = "An error occurred while deleting the founder data. Please try again.";
+    }
+});
+
+
